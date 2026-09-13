@@ -5989,6 +5989,50 @@ LeafletWidget.methods.showLogo = function(layerId) {
         }
     });
 </script>
+	<script>
+(function(){
+  function applyTheme(mode){
+    document.body.classList.toggle("dark", mode==="dark");
+    const btn=document.getElementById("themeToggle");
+    if(btn) btn.textContent = mode==="dark" ? "☀️" : "🌙 Dark";
+    localStorage.setItem("theme",mode);
+  }
+
+  const saved = localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark":"light");
+
+  window.addEventListener("load",function(){
+    applyTheme(saved);
+
+    document.getElementById("themeToggle").onclick=function(){
+      applyTheme(document.body.classList.contains("dark") ? "light":"dark");
+    };
+
+    // Collapse Feature legend
+    const controls=[...document.querySelectorAll(".leaflet-control")];
+    const legend = controls.find(el=>el.innerText && el.innerText.includes("Feature"));
+    if(legend){
+      const wrapper=document.createElement("div");
+      wrapper.className="legend-content";
+      while(legend.firstChild){
+        wrapper.appendChild(legend.firstChild);
+      }
+      const btn=document.createElement("button");
+      btn.className="legend-toggle";
+      btn.textContent="📑 Feature Legend";
+      btn.onclick=()=>wrapper.classList.toggle("hidden");
+      wrapper.classList.add("hidden");
+      legend.appendChild(btn);
+      legend.appendChild(wrapper);
+    }
+
+    // Keep navbar text black/light instead of Leaflet blue
+    document.querySelectorAll(".site-navbar a").forEach(a=>{
+      a.style.color="var(--text)";
+    });
+  });
+})();
+</script>
 </body>
 
 </html>
