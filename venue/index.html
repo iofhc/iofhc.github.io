@@ -5496,7 +5496,7 @@ body.dark .leaflet-control a{color:#f9fafb!important;}
   function applyTheme(mode){
     document.body.classList.toggle("dark", mode==="dark");
     const btn=document.getElementById("themeToggle");
-    if(btn) btn.textContent = mode==="dark" ? "☀️ Light" : "🌙 Dark";
+    if(btn) btn.textContent = mode==="dark" ? "☀️" : "🌙";
     localStorage.setItem("theme",mode);
   }
 
