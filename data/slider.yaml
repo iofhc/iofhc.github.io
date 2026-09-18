@@ -1,5 +1,9 @@
 title: "XYZ Meetups"
 images:
+    - src: images/home-slides/call_3.jpg
+    caption: "Recent Call"
+  - src: images/home-slides/iofhc_1.jpg
+    caption: "Beautiful Hetauda Campus (Forestry/TU)"  
   - src: images/home-slides/iof-hc.jpg
     caption: "Hetauda Campus"
   - src: images/home-slides/call.jpg
